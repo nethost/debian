@@ -1,7 +1,7 @@
 # Makefile for syncing, signing, and attesting distroless images (digest+tag)
 
-VERSIONS = 12 11 10
-SRC_PREFIX = gcr.io/distroless/static-debian
+VERSIONS = 10 11 12
+SRC_PREFIX = gcr.io/distroless/base-nossl-debian
 DST_REGISTRIES = \
     registry.cn-shanghai.aliyuncs.com/nethost/debian \
     docker.io/nethost/debian \
@@ -17,7 +17,7 @@ all: process
 
 process:
 	@for ver in $(VERSIONS); do \
-	  src_img="$(SRC_PREFIX)$$ver:nonroot"; \
+	  src_img="$(SRC_PREFIX)$$ver"; \
 	  for dst in $(DST_REGISTRIES); do \
 	    dst_img="$$dst:$$ver"; \
 	    echo "==> Copy $$src_img to $$dst_img"; \
